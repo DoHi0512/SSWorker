@@ -23,7 +23,7 @@ export default function RootLayout({
           <body className={`flex h-full`}>
             <Sidebar />
             <div className="flex-1 p-8">{children}</div>
-            <ToastContainer position="bottom-right" />
+            <ToastContainer position="bottom-right" limit={1} />
           </body>
         </QueryClientProvider>
       </html>

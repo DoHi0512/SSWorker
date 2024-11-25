@@ -1,4 +1,5 @@
 export interface WorkerTypes {
+  id?: number;
   name: string;
   account_number: string;
   phone_number: string;

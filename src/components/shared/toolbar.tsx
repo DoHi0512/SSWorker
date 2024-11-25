@@ -1,6 +1,6 @@
 import { alpha, IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
-import { GridDeleteIcon, GridFilterListIcon } from "@mui/x-data-grid";
-
+import { GridDeleteIcon } from "@mui/x-data-grid";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 interface EnhancedToolbarProps {
   numSelected: number;
   onDelete: () => void;
@@ -9,6 +9,7 @@ interface EnhancedToolbarProps {
 const EnhancedToolbar = ({
   numSelected,
   onDelete,
+
   title
 }: EnhancedToolbarProps) => {
   return (
@@ -31,13 +32,7 @@ const EnhancedToolbar = ({
           {numSelected}개 선택됨
         </span>
       ) : (
-        <Typography
-          sx={{ flex: "1 1 100%" }}
-          variant="h6"
-          id="tableTitle"
-          component="div">
-          {title}
-        </Typography>
+        <span className="text-xl font-semibold">{title}</span>
       )}
       {numSelected > 0 && (
         <Tooltip title="삭제하기">
