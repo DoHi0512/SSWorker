@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import useWorker from "@/hooks/useWorker";
 import { WorkerTypes } from "@/types/worker";
 import { IoMdClose } from "react-icons/io";
-import { Autocomplete, Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import CustomInput from "../shared/input";
 import CustomDropdown from "../shared/dropdown";
 interface WorkerFormProps {
@@ -18,8 +18,7 @@ export const WorkerForm = ({ close }: WorkerFormProps) => {
   return (
     <form
       className="flex w-[50rem] flex-col gap-8"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+      onSubmit={handleSubmit(onSubmit)}>
       <div className="flex justify-between">
         <span className="text-xl font-bold">근로자 등록하기</span>
         <IoMdClose className="cursor-pointer" onClick={close} size="1.5rem" />
@@ -40,8 +39,8 @@ export const WorkerForm = ({ close }: WorkerFormProps) => {
             required: "주민번호는 필수 항목입니다.",
             pattern: {
               value: /^\d{6}[-]?\d{7}$/,
-              message: "유효한 주민번호를 입력해주세요.",
-            },
+              message: "유효한 주민번호를 입력해주세요."
+            }
           }}
         />
         <CustomInput
@@ -52,8 +51,8 @@ export const WorkerForm = ({ close }: WorkerFormProps) => {
             required: "전화번호는 필수 항목입니다.",
             pattern: {
               value: /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/,
-              message: "유효한 전화번호를 입력해주세요.",
-            },
+              message: "유효한 전화번호를 입력해주세요."
+            }
           }}
         />
         <CustomInput
@@ -62,7 +61,7 @@ export const WorkerForm = ({ close }: WorkerFormProps) => {
           label="단가"
           rules={{
             required: "단가는 필수 항목입니다.",
-            pattern: { value: /^[0-9]+$/, message: "숫자만 입력 가능합니다." },
+            pattern: { value: /^[0-9]+$/, message: "숫자만 입력 가능합니다." }
           }}
         />
         <CustomInput
@@ -85,7 +84,7 @@ export const WorkerForm = ({ close }: WorkerFormProps) => {
           label="계좌번호"
           rules={{
             required: "계좌번호는 필수 항목입니다.",
-            pattern: { value: /^[0-9]+$/, message: "숫자만 입력 가능합니다." },
+            pattern: { value: /^[0-9]+$/, message: "숫자만 입력 가능합니다." }
           }}
         />
         <CustomInput

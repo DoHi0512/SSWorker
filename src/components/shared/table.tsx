@@ -1,32 +1,41 @@
-"use client";
-import useWorker from "@/hooks/useWorker";
 import {
   DataGrid,
   GridActionsCellItem,
   GridColDef,
   GridRowId,
-  GridRowModes,
-  GridRowModesModel
+  GridRowModel,
+  GridRowModes
 } from "@mui/x-data-grid";
-import { koKR } from "@mui/x-data-grid/locales";
 import { useState } from "react";
-import EnhancedToolbar from "../shared/toolbar";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import { Paper } from "@mui/material";
-import { WorkerTypes } from "@/types/worker";
-
-export const WorkerList = () => {
-  const [selected, setSelected] = useState<readonly GridRowId[]>([]);
-  const { worker, isLoading, remove, edit } = useWorker();
+import { koKR } from "@mui/x-data-grid/locales";
+import EnhancedToolbar from "./toolbar";
+interface DataTableProps {
+  title: string;
+  onDelete: (v: readonly GridRowId[]) => void;
+  onEdit: (v: any) => void;
+  columns: GridColDef[];
+  isLoading?: boolean;
+  rows: any;
+}
+const DataTable = ({
+  title,
+  onEdit,
+  onDelete,
+  columns,
+  isLoading,
+  rows
+}: DataTableProps) => {
+  const [rowModesModel, setRowModesModel] = useState<GridRowModel>({});
   const [paginationModel, setPaginationModel] = useState({
     page: 0,
     pageSize: 10
   });
-  const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({});
-
+  const [selected, setSelected] = useState<readonly GridRowId[]>([]);
   const handleEditClick = (id: GridRowId) => {
     setRowModesModel({
       ...rowModesModel,
@@ -47,36 +56,18 @@ export const WorkerList = () => {
       [id]: { mode: GridRowModes.View, ignoreModifications: true }
     });
   };
-
-  const handleProcessRowUpdate = (newRow: WorkerTypes) => {
+  const handleProcessRowUpdate = (newRow: any) => {
     const updatedRow = { ...newRow };
-    edit(updatedRow);
+    onEdit(updatedRow);
     return updatedRow;
   };
 
   const handleDeleteClick = (id: GridRowId) => {
-    remove([id]);
+    onDelete([id]);
   };
 
-  const columns: GridColDef[] = [
-    { field: "name", headerName: "이름", editable: true },
-    {
-      field: "register_number",
-      headerName: "주민번호",
-      flex: 1,
-      editable: true
-    },
-    { field: "phone_number", headerName: "전화번호", flex: 1, editable: true },
-    {
-      field: "account_number",
-      headerName: "계좌번호",
-      flex: 1,
-      editable: true
-    },
-    { field: "address", headerName: "주소", editable: true },
-    { field: "pay", headerName: "단가", editable: true },
-    { field: "bank", headerName: "은행", editable: true },
-    { field: "depositor", headerName: "예금주", editable: true },
+  const actionsColumns: GridColDef[] = [
+    ...columns,
     {
       field: "actions",
       type: "actions",
@@ -119,13 +110,12 @@ export const WorkerList = () => {
       }
     }
   ];
-
   return (
     <Paper className="flex flex-1 flex-col">
       <EnhancedToolbar
-        title="근로자 명단"
+        title={title}
         numSelected={selected.length}
-        onDelete={() => remove(selected)} // 선택된 항목 삭제
+        onDelete={() => onDelete(selected)}
       />
       <DataGrid
         sx={{ border: 0 }}
@@ -143,8 +133,8 @@ export const WorkerList = () => {
         }}
         localeText={koKR.components.MuiDataGrid.defaultProps.localeText}
         initialState={{ pagination: { paginationModel } }}
-        columns={columns}
-        rows={worker || []}
+        columns={actionsColumns}
+        rows={rows}
         pageSizeOptions={[10, 20, 30]}
         editMode="row"
         rowModesModel={rowModesModel}
@@ -154,3 +144,5 @@ export const WorkerList = () => {
     </Paper>
   );
 };
+
+export default DataTable;
