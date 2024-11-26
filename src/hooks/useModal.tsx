@@ -1,36 +1,31 @@
-import { ReactNode, useState } from "react";
-import dynamic from "next/dynamic";
-
-const Modal = dynamic(() => import("react-modal"));
+import { ReactElement, useCallback, useState } from "react";
+import { Box, Modal } from "@mui/material";
 
 export const useModal = (isBlur: boolean = true) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
+  const modalStyles = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 2,
+    borderRadius: "8px"
   };
+
+  const ModalComponent = useCallback(
+    ({ children }: { children: ReactElement }) => (
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <Box sx={modalStyles}>{children}</Box>
+      </Modal>
+    ),
+    [isOpen, isBlur]
+  );
+
   return {
-    Modal: isOpen
-      ? ({ children }: { children: ReactNode }) => (
-          <Modal
-            style={customStyles}
-            ariaHideApp={false}
-            isOpen={isOpen}
-            onRequestClose={isBlur ? () => setIsOpen(false) : () => null}
-            parentSelector={() => document.body}
-          >
-            {children}
-          </Modal>
-        )
-      : () => null,
+    Modal: ModalComponent,
     open: () => setIsOpen(true),
-    close: () => setIsOpen(false),
+    close: () => setIsOpen(false)
   };
 };
