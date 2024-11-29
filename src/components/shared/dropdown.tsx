@@ -13,16 +13,16 @@ const CustomDropdown = ({
   label,
   name,
   control,
-  rules,
+  rules
 }: CustomDropdownProps) => {
   const {
     field,
-    fieldState: { error, invalid },
+    fieldState: { error, invalid }
   } = useController({
     name,
     control,
     defaultValue: "",
-    rules,
+    rules
   });
   return (
     <Autocomplete

@@ -2,7 +2,8 @@ import { Box, Divider, List } from "@mui/material";
 import { SidebarItem } from "./item";
 import PersonIcon from "@mui/icons-material/Person";
 import HomeIcon from "@mui/icons-material/Home";
-
+import PlaceIcon from "@mui/icons-material/Place";
+import ChecklistIcon from "@mui/icons-material/Checklist";
 export const Sidebar = () => {
   return (
     <div className="flex h-full w-56 shrink-0 flex-col gap-2 border-r border-gray-300 bg-white py-8">
@@ -13,6 +14,11 @@ export const Sidebar = () => {
         <Divider />
         <List>
           <SidebarItem Icon={PersonIcon} label="근로자 관리" href="/worker" />
+          <SidebarItem Icon={PlaceIcon} label="현장 관리" href="/place" />
+        </List>
+        <Divider />
+        <List>
+          <SidebarItem Icon={ChecklistIcon} label="데이터 관리" href="/data" />
         </List>
       </Box>
     </div>

@@ -1,35 +1,15 @@
 "use client";
-
+import InputForm from "@/components/shared/form";
 import DataTable from "@/components/shared/table";
-import { WorkerForm } from "@/components/worker/form";
+import { WORKER_COLUMN } from "@/constants/columns";
+import { WORKER_FORM } from "@/constants/form";
 import { useModal } from "@/hooks/useModal";
 import useWorker from "@/hooks/useWorker";
 import { Button } from "@mui/material";
-import { GridColDef } from "@mui/x-data-grid";
 
 const WorkerPage = () => {
   const { Modal, open, close } = useModal(false);
-  const { worker, isLoading, remove, edit } = useWorker();
-  const columns: GridColDef[] = [
-    { field: "name", headerName: "이름", editable: true },
-    {
-      field: "register_number",
-      headerName: "주민번호",
-      flex: 1,
-      editable: true
-    },
-    { field: "phone_number", headerName: "전화번호", flex: 1, editable: true },
-    {
-      field: "account_number",
-      headerName: "계좌번호",
-      flex: 1,
-      editable: true
-    },
-    { field: "address", headerName: "주소", editable: true },
-    { field: "pay", headerName: "단가", editable: true },
-    { field: "bank", headerName: "은행", editable: true },
-    { field: "depositor", headerName: "예금주", editable: true }
-  ];
+  const { worker, isLoading, remove, edit, mutate } = useWorker();
   return (
     <div className="flex h-full flex-col gap-4">
       <div className="flex items-center justify-between">
@@ -42,12 +22,18 @@ const WorkerPage = () => {
           추가하기
         </Button>
         <Modal>
-          <WorkerForm close={close} />
+          <InputForm
+            close={close}
+            mutate={mutate}
+            list={WORKER_FORM}
+            gridCols={2}
+            title="근로자 등록"
+          />
         </Modal>
       </div>
       <DataTable
         rows={worker}
-        columns={columns}
+        columns={WORKER_COLUMN}
         title="근로자 명단"
         onEdit={edit}
         onDelete={remove}
