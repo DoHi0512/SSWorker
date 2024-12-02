@@ -26,7 +26,7 @@ export const WORKER_FORM: FormListType[] = [
     rules: {
       required: "전화번호는 필수 항목입니다.",
       pattern: {
-        value: /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/,
+        value: /^(01[0-9]{1})([0-9]{3,4})([0-9]{4})$/,
         message: "유효한 전화번호를 입력해주세요."
       }
     }
