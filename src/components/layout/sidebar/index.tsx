@@ -18,7 +18,11 @@ export const Sidebar = () => {
         </List>
         <Divider />
         <List>
-          <SidebarItem Icon={ChecklistIcon} label="데이터 관리" href="/data" />
+          <SidebarItem
+            Icon={ChecklistIcon}
+            label="데이터 관리"
+            href="/management"
+          />
         </List>
       </Box>
     </div>
