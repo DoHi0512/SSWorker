@@ -1,9 +1,10 @@
-import { Button, TextFieldProps } from "@mui/material";
+import { Button } from "@mui/material";
 import CustomDropdown from "./dropdown";
 import { useForm } from "react-hook-form";
 import CustomInput from "./input";
 import { IoMdClose } from "react-icons/io";
 import { FormListType } from "@/types/shared";
+import CustomDatePicker from "./datepicker";
 
 interface InputFormProps {
   close: () => void;
@@ -33,10 +34,13 @@ const InputForm = ({
       );
     } else if (type == "input") {
       return <CustomInput key={key} {...props} control={control} />;
+    } else if (type == "datepicker") {
+      return <CustomDatePicker key={key} {...props} control={control} />;
     }
   });
 
   const onSubmit = (data: any) => {
+    console.log(data);
     mutate(data);
     close();
   };
@@ -47,14 +51,14 @@ const InputForm = ({
   };
 
   return (
-    <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="flex min-w-[20rem] flex-col gap-8"
+      onSubmit={handleSubmit(onSubmit)}>
       <div className="flex justify-between">
-        <span className="text-xl font-bold">{title}</span>
+        <span className="text-2xl font-bold">{title}</span>
         <IoMdClose className="cursor-pointer" onClick={close} size="1.5rem" />
       </div>
-      <div className={`${gridStyle[gridCols]} grid grid-cols-2 gap-4`}>
-        {InputList}
-      </div>
+      <div className={`${gridStyle[gridCols]} grid gap-4`}>{InputList}</div>
       <Button size="large" variant="contained" type="submit" color="primary">
         등록하기
       </Button>

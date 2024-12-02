@@ -1,6 +1,6 @@
 export type Size = "xs" | "sm" | "md" | "lg" | "xl";
 export interface FormListType {
-  type: "input" | "dropdown";
+  type: "input" | "dropdown" | "datepicker";
   label: string;
   options?: string[];
   name: string;
