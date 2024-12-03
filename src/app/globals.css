@@ -12,3 +12,11 @@ html {
 html {
   height: 100%;
 }
+
+.MuiDataGrid-main {
+  height: 0 !important;
+  overflow-y: auto !important;
+}
+.MuiDataGrid-virtualScroller {
+  overflow-y: auto !important;
+}
