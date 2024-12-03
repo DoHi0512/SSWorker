@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const useManagement = () => {
   const queryClient = useQueryClient();
   const { data, ...restQuery } = useQuery({
-    queryFn: () => fetchData("management"),
+    queryFn: () => fetchData("management", "date"),
     queryKey: ["management"]
   });
   const { mutate } = useMutation({

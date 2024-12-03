@@ -1,7 +1,12 @@
 import supabase from "@/utils/supabase/client";
 import { GridRowId } from "@mui/x-data-grid";
 
-export const fetchData = async (table: string) => {
+export const fetchData = async (table: string, order?: string) => {
+  if (order) {
+    return (
+      await supabase.from(table).select("*").order(order, { ascending: false })
+    ).data;
+  }
   return (await supabase.from(table).select("*")).data;
 };
 
