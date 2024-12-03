@@ -2,6 +2,7 @@ import { GridColDef } from "@mui/x-data-grid";
 
 export const WORKER_COLUMN: GridColDef[] = [
   { field: "name", headerName: "이름", editable: true },
+  { field: "team", headerName: "팀", editable: true },
   {
     field: "register_number",
     headerName: "주민번호",
@@ -25,7 +26,8 @@ export const WORKER_COLUMN: GridColDef[] = [
   { field: "bank", headerName: "은행", editable: true },
   { field: "depositor", headerName: "예금주", editable: true },
   { field: "address", headerName: "주소", editable: true },
-  { field: "pay", headerName: "단가", editable: true }
+  { field: "pay", headerName: "단가", editable: true },
+  { field: "type", headerName: "단위", editable: true }
 ];
 
 export const PLACE_COLUMN: GridColDef[] = [
@@ -50,7 +52,8 @@ export const MANAGEMENT_COLUMN: GridColDef[] = [
     headerName: "날짜",
     type: "date",
     flex: 1,
-    valueGetter: (value) => new Date(value)
+    valueGetter: (value) => new Date(value),
+    editable: true
   },
   {
     field: "place",

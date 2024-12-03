@@ -9,6 +9,12 @@ export const WORKER_FORM: FormListType[] = [
   },
   {
     type: "input",
+    name: "team",
+    label: "팀",
+    rules: { required: "팀은 필수 항목입니다." }
+  },
+  {
+    type: "input",
     name: "register_number",
     label: "주민번호",
     rules: {
@@ -38,6 +44,14 @@ export const WORKER_FORM: FormListType[] = [
     rules: {
       required: "단가는 필수 항목입니다.",
       pattern: { value: /^[0-9]+$/, message: "숫자만 입력 가능합니다." }
+    }
+  },
+  {
+    type: "input",
+    name: "type",
+    label: "단위",
+    rules: {
+      required: "단위는 필수 항목입니다."
     }
   },
   {
