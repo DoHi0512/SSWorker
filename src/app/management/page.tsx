@@ -50,7 +50,7 @@ const ManagementPage = () => {
   return (
     <div className="flex h-full flex-col gap-4">
       <div className="flex items-center justify-between">
-        <span className="text-2xl font-semibold">근로자 관리</span>
+        <span className="text-2xl font-semibold">데이터 관리</span>
         <Button
           size="large"
           variant="contained"
@@ -64,14 +64,14 @@ const ManagementPage = () => {
             mutate={mutate}
             list={MANAGEMENT_FORM}
             gridCols={2}
-            title="근로자 등록"
+            title="데이터 등록"
           />
         </Modal>
       </div>
       <DataTable
         rows={management}
         columns={MANAGEMENT_COLUMN}
-        title="근로자 명단"
+        title="데이터 목록"
         onEdit={edit}
         onDelete={remove}
         isLoading={isLoading}

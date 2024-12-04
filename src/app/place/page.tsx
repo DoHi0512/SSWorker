@@ -34,7 +34,7 @@ const PlacePage = () => {
       <DataTable
         rows={place}
         columns={PLACE_COLUMN}
-        title="현장 명단"
+        title="현장 목록"
         onEdit={edit}
         onDelete={remove}
         isLoading={isLoading}
