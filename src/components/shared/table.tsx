@@ -20,7 +20,7 @@ interface DataTableProps {
   onEdit: (v: any) => void;
   columns: GridColDef[];
   isLoading?: boolean;
-  rows: any;
+  rows: GridRowModel[];
 }
 const DataTable = ({
   title,
@@ -56,7 +56,7 @@ const DataTable = ({
       [id]: { mode: GridRowModes.View, ignoreModifications: true }
     });
   };
-  const handleProcessRowUpdate = (newRow: any) => {
+  const handleProcessRowUpdate = (newRow: GridRowModel) => {
     const updatedRow = { ...newRow };
     onEdit(updatedRow);
     return updatedRow;
@@ -79,12 +79,14 @@ const DataTable = ({
         if (isInEditMode) {
           return [
             <GridActionsCellItem
+              key={id}
               icon={<SaveIcon />}
               label="Save"
               onClick={() => handleSaveClick(id)}
               color="primary"
             />,
             <GridActionsCellItem
+              key={id}
               icon={<CancelIcon />}
               label="Cancel"
               onClick={() => handleCancelClick(id)}
@@ -95,12 +97,14 @@ const DataTable = ({
 
         return [
           <GridActionsCellItem
+            key={id}
             icon={<EditIcon />}
             label="Edit"
             onClick={() => handleEditClick(id)}
             color="inherit"
           />,
           <GridActionsCellItem
+            key={id}
             icon={<DeleteIcon />}
             label="Delete"
             onClick={() => handleDeleteClick(id)}
@@ -118,7 +122,8 @@ const DataTable = ({
         onDelete={() => onDelete(selected)}
       />
       <DataGrid
-        sx={{ border: 0 }}
+        autoHeight={true}
+        sx={{ border: 0, overflow: "auto", flex: 1 }}
         slotProps={{
           loadingOverlay: {
             variant: "skeleton",

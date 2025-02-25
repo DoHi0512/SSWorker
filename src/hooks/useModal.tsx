@@ -4,7 +4,7 @@ import { Box, Modal } from "@mui/material";
 export const useModal = (isBlur: boolean = true) => {
   const [isOpen, setIsOpen] = useState(false);
   const modalStyles = {
-    position: "absolute" as "absolute",
+    position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",

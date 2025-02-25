@@ -1,6 +1,6 @@
-import { alpha, IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
+import { alpha, IconButton, Toolbar, Tooltip } from "@mui/material";
 import { GridDeleteIcon } from "@mui/x-data-grid";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
+
 interface EnhancedToolbarProps {
   numSelected: number;
   onDelete: () => void;

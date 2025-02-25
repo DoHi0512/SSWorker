@@ -32,7 +32,7 @@ const PlacePage = () => {
         </Modal>
       </div>
       <DataTable
-        rows={place}
+        rows={place || []}
         columns={PLACE_COLUMN}
         title="현장 목록"
         onEdit={edit}

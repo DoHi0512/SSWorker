@@ -32,7 +32,7 @@ const WorkerPage = () => {
         </Modal>
       </div>
       <DataTable
-        rows={worker}
+        rows={worker || []}
         columns={WORKER_COLUMN}
         title="근로자 명단"
         onEdit={edit}

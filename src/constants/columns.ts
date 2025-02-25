@@ -3,6 +3,7 @@ import { GridColDef } from "@mui/x-data-grid";
 export const WORKER_COLUMN: GridColDef[] = [
   { field: "name", headerName: "이름", editable: true },
   { field: "team", headerName: "팀", editable: true },
+  { field: "category", headerName: "직종", editable: true },
   {
     field: "register_number",
     headerName: "주민번호",
@@ -66,7 +67,7 @@ export const MANAGEMENT_COLUMN: GridColDef[] = [
     flex: 1
   },
   {
-    field: "pay",
+    field: "time",
     headerName: "공수",
     flex: 1
   }

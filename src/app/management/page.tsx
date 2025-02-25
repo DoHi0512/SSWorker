@@ -69,7 +69,7 @@ const ManagementPage = () => {
         </Modal>
       </div>
       <DataTable
-        rows={management}
+        rows={management || []}
         columns={MANAGEMENT_COLUMN}
         title="데이터 목록"
         onEdit={edit}

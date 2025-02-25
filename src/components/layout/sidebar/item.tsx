@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 interface SidebarItemProps {
   href: string;
   label: string;
-  Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
+  Icon: OverridableComponent<SvgIconTypeMap<object, "svg">>;
 }
 export const SidebarItem = ({ href, label, Icon }: SidebarItemProps) => {
   const isActive = usePathname() === href;

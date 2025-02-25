@@ -45,6 +45,16 @@ export const getBorder = (
   };
 };
 
+export const getBgColor = (color: string = "d9d9d9") => {
+  return {
+    fill: {
+      patternType: "solid",
+      bgColor: { rgb: color },
+      fgColor: { rgb: color }
+    }
+  };
+};
+
 export const borderRange = (
   ws: WorkSheet,
   startCell: string,
@@ -64,10 +74,11 @@ export const borderRange = (
 
       ws[cellAddress].s = ws[cellAddress].s || {};
       ws[cellAddress].s.border = {
-        top: row === start.r ? borderConfig : undefined,
-        bottom: row === end.r ? borderConfig : undefined,
-        left: col === start.c ? borderConfig : undefined,
-        right: col === end.c ? borderConfig : undefined
+        ...ws[cellAddress].s.border,
+        top: row === start.r ? borderConfig : ws[cellAddress].s.border?.top,
+        bottom: row === end.r ? borderConfig : ws[cellAddress].s.border?.bottom,
+        left: col === start.c ? borderConfig : ws[cellAddress].s.border?.left,
+        right: col === end.c ? borderConfig : ws[cellAddress].s.border?.right
       };
     }
   }
